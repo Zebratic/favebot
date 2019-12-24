@@ -46,7 +46,7 @@ async def setVTID(VTID):
 
 print(f'[ZEBBOT] [{getTime()}] Bot created by Zebratic#7297')
 
-with open(__location__ + '\config.json') as f:
+with open('config.json') as f:
     data = json.load(f)
 
 if data['debug'] == True:
