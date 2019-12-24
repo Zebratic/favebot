@@ -15,7 +15,6 @@ try:
 except ModuleNotFoundError as e:
     print(e)
     print('Failed to import 1 or more modules!')
-    ctypes.windll.user32.MessageBoxW(0, "Bot failed to launch!\nRemember to click 'Run setup'\non the dashboard!", "Fortnite Mod Menu Lobby Bot", 0)
     exit()
 
 __location__ = os.path.realpath(
@@ -64,7 +63,7 @@ if data['debug'] == True:
     logger.addHandler(handler)
 else:
     print(f"[ZEBBOT] [{getTime()}] Debug logging is off.")
-ctypes.windll.user32.MessageBoxW(0, "Bot launched!\nPlease wait for the bot to login...", "Fortnite Mod Menu Lobby Bot", 0)
+
 
 client = fortnitepy.Client(
     email=data['email'],
@@ -76,9 +75,7 @@ client = fortnitepy.Client(
 @client.event
 async def event_ready():
     print(crayons.green(f'[ZEBBOT] [{getTime()}] Bot ready as {client.user.display_name}.'))
-    webbrowser.open('https://bit.ly/31zUlFL')
-    webbrowser.open('https://discord.gg/mwT4wJT')
-    ctypes.windll.user32.MessageBoxW(0, "Bot 2 logged in, and is online!", "Fortnite Mod Menu Lobby Bot", 0)
+
 
 @client.event
 async def event_party_invite(invite):
@@ -92,7 +89,6 @@ async def event_friend_request(request):
     if data['friendaccept'] is True:
         await request.accept()
         print(f"[ZEBBOT] [{getTime()}] ACCEPTED friend request from: {request.display_name.display_name}.")
-        ctypes.windll.user32.MessageBoxW(0, "ACCEPTED friend request from: {request.display_name.display_name}.", "Fortnite Mod Menu Lobby Bot", 0)
     elif data['friendaccept'] is False:
         await request.decline()
         print(f"[ZEBBOT] [{getTime()}] REJECTED friend request from: {request.display_name.display_name}.")
@@ -565,5 +561,4 @@ try:
     client.run()
 except fortnitepy.AuthException:
     print(crayons.red(f"[ZEBBOT] [{getTime()}] [ERROR] Invalid account credentials."))
-    ctypes.windll.user32.MessageBoxW(0, "Email or password is wrong!\nPlease check if you typed it correctly!", "Fortnite Mod Menu Lobby Bot", 0)
     
